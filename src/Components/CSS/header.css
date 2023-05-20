@@ -1,0 +1,30 @@
+/* Header CSS */
+.header {
+  display: flex;
+  height: 92px;
+  height: 100.88px;
+}
+.header h2 {
+  margin: 0px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.header-buttons {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.header-buttons > * {
+  padding: 0px 10px 0px 10px;
+}
+@media only screen and (max-width: 456px) {
+  .header > div {
+    display: none;
+  }
+  .header-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}

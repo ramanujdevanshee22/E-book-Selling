@@ -1,0 +1,60 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.login-login-heading {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 50px 0px;
+  padding: 25px 0px 25px 0px;
+  cursor: default;
+}
+.login-login-heading > span {
+  font-size: 32px;
+  color: #414141;
+  font-weight: bolder;
+}
+.login-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+.login-sub-header {
+  font-size: 20px;
+  color: #414141;
+  margin: 50px 0px 2px 0px;
+  font-weight: bold;
+  border-bottom: 1px solid #808080;
+  padding-bottom: 20px;
+}
+.login-sub-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: 450px;
+}
+.login-msg {
+  font-size: 15px;
+  color: #838383;
+}
+.login-ul {
+  padding: 15px;
+}
+.login-li {
+  margin: top 15px;
+  font-size: 15px;
+  color: #212121;
+}
+.login-button-container {
+  margin-top: 45px;
+}
+.login-form-label {
+  font-size: 15px;
+}
+.login-form-label::after {
+  content: "*";
+}
+.login-sub-holder {
+  margin-top: 40px;
+}

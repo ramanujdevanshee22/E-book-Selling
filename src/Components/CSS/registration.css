@@ -1,0 +1,60 @@
+.reg-container {
+  padding: 1vw 5vw 4vw 5vw;
+  margin: 0px 25px 0px 25px;
+}
+.reg-login-heading {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 50px 0px;
+  padding: 25px 0px 25px 0px;
+  cursor: default;
+}
+.reg-login-heading > span {
+  font-size: 32px;
+  color: #414141;
+  font-weight: bolder;
+}
+.reg-sub-heading {
+  padding: 1vw 1vw 1vw 1.45vw;
+  /* margin-left: 1.5vw; */
+}
+.reg-info {
+  font-size: 20px;
+  color: #414141;
+  font-weight: 500;
+  margin-left: 25px;
+}
+.reg-instructions {
+  font-size: 15px;
+  color: #838383;
+  margin-left: 25px;
+}
+.reg-login-container {
+  margin-left: 25px;
+}
+.reg-holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 15px 0px 0px 0px;
+}
+.reg-sub-holder {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 25px 0px 0px;
+}
+.reg-form-label {
+  font-size: 15px;
+}
+.reg-form-label::after {
+  content: "*";
+}
+.reg-login-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+#reg-login {
+  margin: 5vw 0vw 0vw -2vw;
+}

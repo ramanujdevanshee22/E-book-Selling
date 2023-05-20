@@ -1,0 +1,9 @@
+/* Search Section CSS */
+.search-section {
+  margin: 20px 0px 50px 0px;
+  display: flex;
+  justify-content: center;
+}
+.search-section > * {
+  margin: 5px 0px 5px 15px;
+}
