@@ -1,0 +1,44 @@
+.redBtn {
+  font-size: 16px;
+  /* max-width: 129px; */
+  background-color: #f14d54;
+  color: whitesmoke;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 20px 5px 20px;
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+}
+.redBtn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+.redBtn:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+}
+.deleteButton {
+  width: 80px;
+  height: 30px;
+  border: 2px solid #f14d54;
+  font-weight: 500;
+  color: #f14d54;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  transition: all 0.1s;
+  letter-spacing: 1px;
+}
+.deleteButton:hover {
+  border: 2px solid #f14d54;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #f14d54;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.1s;
+}
+.deleteButton:active {
+  transform: scale(0.95);
+  transition: all 0.1s;
+}

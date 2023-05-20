@@ -1,0 +1,44 @@
+.greenBtn {
+  font-size: 16px;
+  max-width: 129px;
+  background-color: #80bf32;
+  color: whitesmoke;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 20px 5px 20px;
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+}
+.greenBtn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+.greenBtn:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+}
+.editButton {
+  width: 80px;
+  height: 30px;
+  border: 2px solid #80bf32;
+  font-weight: 500;
+  color: #80bf32;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  transition: all 0.1s;
+  letter-spacing: 1px;
+}
+.editButton:hover {
+  border: 2px solid #80bf32;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #80bf32;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.1s;
+}
+.editButton:active {
+  transform: scale(0.95);
+  transition: all 0.1s;
+}

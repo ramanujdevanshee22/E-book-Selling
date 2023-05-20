@@ -1,0 +1,21 @@
+.whiteBtn {
+  font-size: 16px;
+  max-width: 129px;
+  background-color: white;
+  color: rgb(65, 65, 65);
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 2px;
+  padding: 5px 20px 5px 20px;
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+  width: 85px;
+}
+.whiteBtn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+.whiteBtn:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+}

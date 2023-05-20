@@ -1,8 +1,8 @@
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import LogIn from "./Pages/LogIn";
-import ProductList from "./Pages/ProductList";
-import Register from "./Pages/Register";
+import Footer from "./Components/SECTIONS/Footer";
+import Header from "./Components/SECTIONS/Header";
+import LogIn from "./Components/PAGES/LogIn";
+import ProductList from "./Components/PAGES/ProductList";
+import Register from "./Components/PAGES/Registration";
 import { BrowserRouter, Routes, Link, Route } from "react-router-dom";
 
 function App() {

@@ -1,0 +1,25 @@
+.textBox {
+  width: 28vw;
+  height: 40px;
+  border: 1px solid rgb(33, 33, 33);
+  color: rgb(33, 33, 33);
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+  padding-left: 5px;
+}
+.textBox:hover {
+  cursor: pointer;
+  background-color: rgb(240, 239, 239);
+  transition: all 0.2s ease-in-out;
+}
+.textBox:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+}
+.textBox:focus {
+  border: 2px solid black;
+}
+.red-textBox {
+  border: 2px solid rgb(218, 93, 93);
+  background: rgb(247, 143, 143);
+}
