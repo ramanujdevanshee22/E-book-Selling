@@ -2,6 +2,8 @@ import "../CSS/registration.css";
 import "../UI/CSS/textBox.css";
 import RedButton from "../UI/RedButton";
 import React, { useState, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
+
 function Registration() {
   const [fname, setFname] = useState("");
   const [fnameVal, changeFnameVal] = useState(false);
@@ -84,6 +86,13 @@ function Registration() {
       password: password,
     };
     console.log(JSON.stringify(user));
+
+    // return (
+    //   <>
+    <Link to="/login"></Link>;
+    <Outlet />;
+    //   </>
+    // );
   };
 
   return (

@@ -1,18 +1,25 @@
-import Footer from "./Components/SECTIONS/Footer";
-import Header from "./Components/SECTIONS/Header";
-import LogIn from "./Components/PAGES/LogIn";
-import ProductList from "./Components/PAGES/ProductList";
-import Register from "./Components/PAGES/Registration";
-import { BrowserRouter, Routes, Link, Route } from "react-router-dom";
+import LogIn from "./Components/Pages/Login";
+import ProductList from "./Components/Pages/ProductList";
+import Registration from "./Components/Pages/Registration";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RootLayout from "./Components/Pages/RootLayout";
+
+const route = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Registration /> },
+      { path: "Login", element: <LogIn /> },
+      { path: "product-page", element: <ProductList /> },
+    ],
+  },
+]);
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      {/* <Register /> */}
-      <ProductList />
-
-      <Footer />
+      <RouterProvider router={route}></RouterProvider>
     </div>
   );
 }
