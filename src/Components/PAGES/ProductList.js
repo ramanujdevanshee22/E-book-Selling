@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ProdActions } from "../STORE/data";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const Product = useSelector((state) => state.Product);
@@ -8,6 +9,7 @@ function ProductList() {
   const dispatch = useDispatch();
   return (
     <div>
+      <Link to="/product-page/add"></Link>
       <table>
         <tr>
           <th>ID</th>
@@ -23,6 +25,12 @@ function ProductList() {
               <td>{prod.title}</td>
               <td>{prod.Source}</td>
               <td>{prod.Query}</td>
+              <td>
+                <button>Edit</button>
+              </td>
+              <td>
+                <button>Delete</button>
+              </td>
             </tr>
           );
         })}

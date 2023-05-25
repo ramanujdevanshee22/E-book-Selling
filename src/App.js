@@ -3,6 +3,10 @@ import ProductList from "./Components/Pages/ProductList";
 import Registration from "./Components/Pages/Registration";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./Components/Pages/RootLayout";
+import AddProduct from "./Components/Pages/AddProduct";
+import EditProduct from "./Components/Pages/EditProduct";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const route = createBrowserRouter([
   {
@@ -12,6 +16,8 @@ const route = createBrowserRouter([
       { index: true, element: <Registration /> },
       { path: "Login", element: <LogIn /> },
       { path: "product-page", element: <ProductList /> },
+      { path: "product-page/add", element: <AddProduct /> },
+      { path: "product-page/edit", element: <EditProduct /> },
     ],
   },
 ]);
@@ -20,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={route}></RouterProvider>
+      <ToastContainer />
     </div>
   );
 }

@@ -24,7 +24,8 @@ const ProdSlice = createSlice({
   initialState: { Product: List },
   reducers: {
     add: (state, action) => {
-      state.Product.push(action.payload);
+      // state.Product.push(action.payload);
+      console.log(action);
     },
   },
 });
