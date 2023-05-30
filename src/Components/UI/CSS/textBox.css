@@ -1,5 +1,5 @@
 .textBox {
-  width: 28vw;
+  width: 30vw;
   height: 40px;
   border: 1px solid rgb(33, 33, 33);
   color: rgb(33, 33, 33);
@@ -9,7 +9,7 @@
 }
 .textBox:hover {
   cursor: pointer;
-  background-color: rgb(240, 239, 239);
+  background-color: rgb(255, 253, 253);
   transition: all 0.2s ease-in-out;
 }
 .textBox:active {

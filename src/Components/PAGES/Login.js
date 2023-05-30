@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../CSS/login.css";
 import "../UI/CSS/textBox.css";
 import RedButton from "../UI/RedButton";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 const Login = (props) => {
   const navigate = useNavigate();
 
@@ -49,6 +51,32 @@ const Login = (props) => {
   const submitForm = (e) => {
     navigate("/");
   };
+  const checkForm = (e) => {
+    e.preventDefault();
+    let fetch_user = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post(
+        "https://book-e-sell-node-api.vercel.app/api/user/login",
+        fetch_user
+      )
+      .then((result) => {
+        console.log(result);
+        if (result.data.code === 200) {
+          toast.success("You are logged in!!!");
+          navigate("/product-page");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.data.code === 401) {
+          toast.error(err.response.data.error);
+          navigate("/Login");
+        }
+      });
+  };
   return (
     <>
       <div className="login-login-heading">
@@ -84,6 +112,7 @@ const Login = (props) => {
                 type="text"
                 className={emailVal ? "textBox" : "textBox red-textBox"}
                 id="email"
+                name="email"
               ></input>
             </div>
             <div className="login-sub-holder">
@@ -95,11 +124,12 @@ const Login = (props) => {
                 type="password"
                 className={pwVal ? "textBox" : "textBox red-textBox"}
                 id="password"
+                name="password"
               ></input>
             </div>
             <div className="login-sub-holder">
               {formVal ? (
-                <RedButton buttonText="Login" />
+                <RedButton buttonText="Login" onSubmit={checkForm} />
               ) : (
                 <h4 style={{ color: "#f14d54" }}>Invalid Details</h4>
               )}

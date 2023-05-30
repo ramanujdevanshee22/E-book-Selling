@@ -17,7 +17,7 @@ function Header(props) {
                     <WhiteButton buttonText="Menu" click={menu} />
                 </div> */}
         <div className="header-buttons">
-          <LinkButton buttonText="Login" onSubmit={clickLogin}></LinkButton> |{" "}
+          <LinkButton buttonText="Login" onClick={clickLogin}></LinkButton> |{" "}
           <LinkButton buttonText="Register" />
           <WhiteButton buttonText="Cart" />
         </div>
