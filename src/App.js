@@ -7,6 +7,7 @@ import AddProduct from "./Components/Pages/AddProduct";
 import EditProduct from "./Components/Pages/EditProduct";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BookListing from "./Components/Pages/BookListing";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const route = createBrowserRouter([
       { path: "product-page", element: <ProductList /> },
       { path: "product-page/add", element: <AddProduct /> },
       { path: "product-page/edit", element: <EditProduct /> },
+      { path: "book-listing", element: <BookListing /> },
     ],
   },
 ]);

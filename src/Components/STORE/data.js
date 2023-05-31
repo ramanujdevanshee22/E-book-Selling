@@ -31,6 +31,5 @@ const ProdSlice = createSlice({
 });
 
 export const ProdActions = ProdSlice.actions;
-export const store = configureStore({
-  reducer: { Product: ProdSlice.reducer },
-});
+
+export default ProdSlice.reducer;

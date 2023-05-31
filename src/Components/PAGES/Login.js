@@ -5,8 +5,13 @@ import RedButton from "../UI/RedButton";
 import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../STORE/auth";
+
 const Login = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const Auth = useSelector((state) => state.auth.auth);
 
   const [email, setEmail] = useState("");
   const [emailVal, setEmailVal] = useState(0);
@@ -65,8 +70,11 @@ const Login = (props) => {
       .then((result) => {
         console.log(result);
         if (result.data.code === 200) {
+          dispatch(authActions.login());
           toast.success("You are logged in!!!");
-          navigate("/product-page");
+          localStorage.setItem("user", JSON.stringify(result.data.result));
+          navigate("/book-listing");
+          console.log(Auth);
         }
       })
       .catch((err) => {
