@@ -1,8 +1,13 @@
 /* Header CSS */
 .header {
   display: flex;
-  height: 92px;
-  height: 100.88px;
+  height: 87px;
+  height: 99px;
+}
+.header img {
+  width: 15vw;
+  height: 60px;
+  margin-top: 17px;
 }
 .header h2 {
   margin: 0px;

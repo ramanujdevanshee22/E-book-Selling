@@ -1,13 +1,14 @@
-import LogIn from "./Components/Pages/Login";
-import ProductList from "./Components/Pages/ProductList";
-import Registration from "./Components/Pages/Registration";
+import LogIn from "./Components/PAGES/Login";
+import BookListing from "./Components/PAGES/BookListing";
+import Registration from "./Components/PAGES/Registration";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./Components/Pages/RootLayout";
-import AddProduct from "./Components/Pages/AddProduct";
-import EditProduct from "./Components/Pages/EditProduct";
+import RootLayout from "./Components/PAGES/RootLayout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BookListing from "./Components/Pages/BookListing";
+import Product from "./Components/PAGES/Product";
+import Categories from "./Components/PAGES/Categories";
+import Users from "./Components/PAGES/Users";
 
 const route = createBrowserRouter([
   {
@@ -16,10 +17,10 @@ const route = createBrowserRouter([
     children: [
       { index: true, element: <Registration /> },
       { path: "Login", element: <LogIn /> },
-      { path: "product-page", element: <ProductList /> },
-      { path: "product-page/add", element: <AddProduct /> },
-      { path: "product-page/edit", element: <EditProduct /> },
       { path: "book-listing", element: <BookListing /> },
+      { path: "products-page", element: <Product /> },
+      { path: "users-page", element: <Users /> },
+      { path: "categories-page", element: <Categories /> },
     ],
   },
 ]);

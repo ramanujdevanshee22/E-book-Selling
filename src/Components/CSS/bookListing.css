@@ -1,0 +1,110 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.book-listing-heading {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 50px 0px;
+  padding: 25px 0px 25px 0px;
+  cursor: default;
+}
+.book-listing-heading span {
+  font-size: 32px;
+  color: #414141;
+  font-weight: bolder;
+}
+
+.book-listing-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 40px 0px 40px;
+  /* border: 2px solid orangered; */
+}
+
+.book-listing-selector-left {
+  /* border: 3px solid greenyellow; */
+}
+
+.book-listing-selector-right {
+  /* border: 3px solid blueviolet; */
+  padding-top: 20px;
+  font-size: medium;
+  font-weight: 700;
+}
+
+.book-listing-selector-right > select {
+  width: 8vw;
+  text-align: center;
+  font-size: medium;
+}
+
+.book-listing-mid > input {
+  margin-top: 20px;
+  /* border: 3px solid blue; */
+  margin-left: 650px;
+  width: 20vw;
+  height: 25px;
+}
+
+.book-listing-items {
+  /* border: 3px solid rgb(33, 153, 218); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  /* border: 2px solid rgb(211, 92, 94); */
+  width: 240px;
+  height: 490px;
+  margin: 20px 20px 20px 20px;
+  box-shadow: 10px 10px 5px rgba(188, 189, 190, 0.737);
+  border-radius: 15px 15px;
+}
+
+.img > img {
+  width: 240px;
+  height: 225px;
+  background-size: cover;
+  border-radius: 15px;
+}
+
+.card-title > h2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: #414141;
+}
+
+.category > p {
+  margin-top: 2px;
+  color: #838383;
+  font-weight: 500;
+}
+
+.desc {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #414141;
+  font-style: oblique;
+  height: 40px;
+}
+
+.price > p {
+  color: #838383;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+/* .btn {
+  border: 2px solid black;
+} */

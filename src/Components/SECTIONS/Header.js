@@ -22,21 +22,42 @@ function Header(props) {
     localStorage.removeItem("user");
     navigate("Login");
   };
+
+  const clickBooks = (e) => {
+    navigate("products-page");
+  };
+
+  const clickUsers = (e) => {
+    navigate("users-page");
+  };
+
+  const clickCategories = (e) => {
+    navigate("categories-page");
+  };
   console.log(Auth);
   return (
     <>
       {/* Header Containing logo and Login/Register/cart Button */}
       <div className="header">
-        <h2>TatvaSoft</h2>
+        <img
+          src="https://image4.owler.com/logo/tatvasoft_owler_20160614_065459_original.png"
+          alt="logo"
+        ></img>
 
         <div className="header-buttons">
           {Auth ? (
             <>
+              <LinkButton buttonText="Books" onClick={clickBooks}></LinkButton>
+              <LinkButton buttonText="Users" onClick={clickUsers}></LinkButton>
               <LinkButton
+                buttonText="Categories"
+                onClick={clickCategories}
+              ></LinkButton>
+              <WhiteButton
                 buttonText="Logout"
-                onClick={clickLogout}
-              ></LinkButton>{" "}
-              | <WhiteButton buttonText="Cart" />
+                click={clickLogout}
+              ></WhiteButton>{" "}
+              <WhiteButton buttonText="Cart" />
             </>
           ) : (
             <>
