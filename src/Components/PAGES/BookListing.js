@@ -7,13 +7,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { all_books } from "../STORE/books";
 import { toast } from "react-toastify";
 function BookListing() {
+  // {"_id":"6481970d7dc52fdc9d897e56","id":178,"email":"vipul@gmail.com","firstName":"vipul","lastName":"ramanuj","roleId":3,"role":"buyer","password":"vipul","__v":0},
   const navigate = useNavigate();
   const Auth = useSelector((state) => state.auth.auth);
   const dispatch = useDispatch();
   const BOOKS = useSelector((state) => state.Books.Books);
   const [showBook, setShowBook] = useState([]);
+  const userID = JSON.parse(localStorage.getItem("user")).id;
 
-  const addHandler = (e) => {};
+  const addHandler = (bookID) => {
+    const addBookToCart = {
+      bookId: bookID,
+      userId: userID,
+      quantity: 1,
+    };
+    axios
+      .post(`https://book-e-sell-node-api.vercel.app/api/cart`, addBookToCart)
+      .then((res) => {
+        console.log(res);
+        if (res.data.code == 200) {
+          toast.success("Item added in cart");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.error);
+      });
+  };
 
   const searchHandler = (e) => {
     const search = e.target.value.toLowerCase();
@@ -67,7 +87,7 @@ function BookListing() {
         console.log(showBook);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -118,7 +138,7 @@ function BookListing() {
               <div className="btn">
                 <RedButton
                   buttonText="ADD TO CART"
-                  onClick={addHandler}
+                  onSubmit={() => addHandler(book.id)}
                 ></RedButton>
               </div>
             </div>

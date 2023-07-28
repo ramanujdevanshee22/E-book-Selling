@@ -34,6 +34,18 @@ function Header(props) {
   const clickCategories = (e) => {
     navigate("categories-page");
   };
+
+  const clickCart = (e) => {
+    navigate("cart-page");
+  };
+
+  const clickBookListing = (e) => {
+    navigate("book-listing");
+  };
+
+  const clickUpdateProfile = (e) => {
+    navigate("update-profile");
+  };
   console.log(Auth);
   return (
     <>
@@ -53,11 +65,19 @@ function Header(props) {
                 buttonText="Categories"
                 onClick={clickCategories}
               ></LinkButton>
+              <LinkButton
+                buttonText="Book Listing"
+                onClick={clickBookListing}
+              ></LinkButton>
+              <LinkButton
+                buttonText="Update Profile"
+                onClick={clickUpdateProfile}
+              ></LinkButton>
               <WhiteButton
                 buttonText="Logout"
                 click={clickLogout}
               ></WhiteButton>{" "}
-              <WhiteButton buttonText="Cart" />
+              <WhiteButton buttonText="Cart" click={clickCart} />
             </>
           ) : (
             <>

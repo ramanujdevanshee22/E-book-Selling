@@ -1,0 +1,23 @@
+input[type="file"]::file-selector-button {
+  font-size: 16px;
+  /* max-width: 129px; */
+  background-color: #f14d54;
+  color: whitesmoke;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 20px 5px 20px;
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+  margin-right: 7px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+}

@@ -128,7 +128,7 @@ function Registration() {
   const submitForm = (e) => {
     e.preventDefault();
     const rolename = roles.find((role) => {
-      if (role.id == selectedRole) {
+      if (role.id === selectedRole) {
         return role.name;
       }
     });
@@ -230,10 +230,6 @@ function Registration() {
                   onChange={(e) => setSelectedRole(e.target.value)}
                   defaultValue={-1}
                 >
-                  {/* <option value={-1}>Choose one!!</option>
-                  <option value={3}>Buyer</option>
-                  <option value={2}>Seller</option>
-                </select> */}
                   <option value={-1}>Choose one</option>
                   {roles.map((role) => {
                     return (

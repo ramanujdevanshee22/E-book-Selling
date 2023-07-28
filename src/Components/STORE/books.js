@@ -5,8 +5,7 @@ const BookSlice = createSlice({
   initialState: { Books: [] },
   reducers: {
     all_books(state, action) {
-      console.log(action.payload.arrBooks);
-
+      // console.log(action.payload.arrBooks);
       state.Books = action.payload.arrBooks;
     },
   },

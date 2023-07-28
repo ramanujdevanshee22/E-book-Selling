@@ -1,26 +1,79 @@
 import React from "react";
 import "../CSS/category.css";
-import RedButton from "../UI/RedButton";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import RedButton from "../UI/RedButton";
 import GreenButton from "../UI/GreenButton";
 import { toast } from "react-toastify";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { all_books } from "../STORE/books";
+import Spinner from "../SECTIONS/Spinner";
 
-export default function Users() {
-  const navigate = useNavigate();
-  const Auth = useSelector((state) => state.auth.auth);
+function Products() {
+  const [IsLoading, setLoading] = useState(false);
   const [RowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [USERS, setUSERS] = useState([]);
+  const [Books, setBooks] = useState([]);
   const [NoMoreitems, setNoMoreItems] = useState(false);
   const [reload, setReload] = useState(1);
+  const dispatch = useDispatch();
+  const BOOKS = useSelector((state) => state.Books.Books);
+  const Auth = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate();
+
+  const addBookHandler = () => {
+    navigate("/add-book");
+  };
+  const BookDeletehandler = (e) => {
+    const DEL = window.confirm("Are you sure?");
+    if (DEL) {
+      axios
+        .delete(
+          `https://book-e-sell-node-api.vercel.app/api/book?id=${e.target.value}`
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            toast.success("Book deleted!");
+            // window.location.reload();
+            if (reload == 2) {
+              setReload(1);
+            } else {
+              setReload(2);
+            }
+          }
+        })
+
+        .catch((err) => {
+          console.log(err);
+          toast.error("Cannot delete this book right now, SERVER ERROR!!");
+        });
+    }
+  };
+  const searchBookHandler = (e) => {
+    const KEYWORD = e.target.value;
+    axios
+      .get(
+        `https://book-e-sell-node-api.vercel.app/api/book/search?keyword=${KEYWORD}`
+      )
+
+      .then((res) => {
+        // console.log(res);
+        // console.log(res.data.result);
+        dispatch(all_books({ arrBooks: res.data.result }));
+        console.log(BOOKS);
+      })
+      .catch((err) => {
+        // toast.error(err.response.data.error);
+        window.location.reload();
+      });
+  };
 
   function nextPage() {
-    if (USERS.length === 0) {
+    if (BOOKS.length === 0) {
       // setNoMoreItems(true);
-      toast.error("NO MORE CATEGORIES");
+      toast.error("NO MORE BOOKS");
       setCurrentPage(1);
     } else {
       setCurrentPage(currentPage + 1);
@@ -33,73 +86,25 @@ export default function Users() {
       setCurrentPage(currentPage - 1);
     }
   }
-
-  const UserEditHandler = (e) => {
-    const userID = e.target.value;
-
-    const PW = USERS.find((user) => {
-      if (user.id == userID) {
-        return user.password;
-      }
-    });
-
-    // console.log(userID);
-    // console.log(PW.password);
-    // console.log(PW);
-
-    navigate(`/edit-user/${userID}/${PW.password}`);
-  };
-
-  const UserDeletehandler = (e) => {
-    const DEL = window.confirm("Are you sure?");
-    if (DEL) {
-      axios
-        .delete(
-          `https://book-e-sell-node-api.vercel.app/api/user?id=${e.target.value}`
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.data.code == 200) {
-            // window.location.reload();
-            if (reload == 2) {
-              setReload(1);
-            } else {
-              setReload(2);
-            }
-
-            toast.success("User deleted!");
-          }
-        })
-
-        .catch((err) => {
-          console.log(err);
-          toast.error("Cannot delete this user right now, SERVER ERROR!!");
-        });
-    }
-  };
-
   useEffect(() => {
     axios
       .get(
-        `https://book-e-sell-node-api.vercel.app/api/user?pageSize=${RowsPerPage}&pageIndex=${currentPage}`
+        `https://book-e-sell-node-api.vercel.app/api/book?pageSize=${RowsPerPage}&pageIndex=${currentPage}`
       )
       .then((res) => {
         // console.log(res);
-        console.log(res.data.result.items);
-
-        setUSERS(res.data.result.items);
-
-        // console.log(USERS);
+        dispatch(all_books({ arrBooks: res.data.result.items }));
+        // console.log(BOOKS);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [RowsPerPage, currentPage, reload]);
-
   return (
     <>
+      {/* <Spinner /> */}
       <div className="category-heading">
-        <span>Users</span>
+        <span>Books Page</span>
       </div>
 
       <div className="category-selector">
@@ -107,53 +112,49 @@ export default function Users() {
           <input
             type="text"
             placeholder="Search"
-            // onChange={searchCategoryHandler}
+            onChange={searchBookHandler}
           ></input>
         </div>
+        <div className="category-selector-add">
+          <RedButton buttonText="Add" onSubmit={addBookHandler} />
+        </div>
       </div>
-
       <div className="category-main-table">
         <table class="table">
           <thead class="table-dark">
             <tr>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Role</th>
+              <th scope="col">Book Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Category</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
-
-          {USERS.map((user) => {
+          {BOOKS.map((book) => {
             return (
               <tbody class="table-group">
                 <tr>
-                  <td>{user.firstName}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
+                  <td>{book.name}</td>
+                  <td>{book.price}₹</td>
+                  <td>{book.category}</td>
+                  <td></td>
                   <td>
                     <button
                       className="editButton"
-                      value={user.id}
-                      data-value={user.password}
-                      onClick={UserEditHandler}
-                      style={{ marginLeft: "50px" }}
+                      value={book.id}
+                      // onClick={BookEditHandler}
+                      style={{ marginLeft: "30px" }}
                     >
                       Edit
                     </button>
-                    {user.role == "admin" ? (
-                      <></>
-                    ) : (
-                      <button
-                        className="deleteButton"
-                        value={user.id}
-                        onClick={UserDeletehandler}
-                        style={{ marginLeft: "10px" }}
-                      >
-                        Delete
-                      </button>
-                    )}
+                    <button
+                      className="deleteButton"
+                      value={book.id}
+                      onClick={BookDeletehandler}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -197,3 +198,5 @@ export default function Users() {
     </>
   );
 }
+
+export default Products;
