@@ -25,7 +25,7 @@
   margin: 20px 0px 50px 0px;
   display: flex;
   justify-content: center;
-  background-color: rgb(239, 236, 236);
+  background-color: rgba(221, 221, 224, 0.982);
   padding: 20px 0px 20px 0px;
   height: 90px;
 }
@@ -35,7 +35,7 @@
 
 .search-main-div {
   width: 42vw;
-  max-height: 150px;
+  max-height: 100px;
   overflow-y: scroll;
 
   /* background-color: aquamarine; */
@@ -56,7 +56,7 @@
 .search-single-item {
   /* border: 3px solid black; */
   margin: 2px 0px 4px 0px;
-  background-color: rgb(203, 237, 208);
+  background-color: rgb(207, 243, 206);
   padding: 0px 2px 0px 2px;
   display: flex;
   flex-direction: row;

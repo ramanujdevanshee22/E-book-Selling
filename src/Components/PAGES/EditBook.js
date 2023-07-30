@@ -1,17 +1,43 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "../CSS/category.css";
-import "../CSS/registration.css";
-import "../UI/CSS/textBox.css";
-import "../CSS/addBook.css";
 import GreenButton from "../UI/GreenButton";
 import RedButton from "../UI/RedButton";
 import { toast } from "react-toastify";
 
-function AddBook() {
+function EditBook() {
+  useEffect(() => {
+    axios
+      .get(`https://book-e-sell-node-api.vercel.app/api/category/all`)
+      .then((res) => {
+        console.log(res);
+        setCategories(res.data.result);
+        // setCategories((prev) => {
+        //   [...prev, res.data.result];
+        // });
+        // let temp = [];
+        // temp.push(res.data.result[0]);
+        // temp.push(res.data.result[1]);
+        // temp.push(res.data.result[2]);
+        // temp.push(res.data.result[3]);
+        // temp.push(res.data.result[4]);
+        // temp.push(res.data.result[5]);
+        // temp.push(res.data.result[6]);
+        // temp.push(res.data.result[7]);
+        // temp.push(res.data.result[8]);
+        // setCategories(temp);
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        console.log(categories);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
   const image_validation = (file) => {
     if (!file || !IMAGE_TYPES.includes(file.type) || file.size >= 1000000) {
@@ -22,8 +48,8 @@ function AddBook() {
   };
   const navigate = useNavigate();
   const Auth = useSelector((state) => state.auth.auth);
-
-  const [formVal, setFormVal] = useState(false);
+  let params = useParams();
+  const book_ID = params.book_id;
 
   const [bname, setBname] = useState("");
   const [bnameVal, changeBnameVal] = useState(false);
@@ -51,51 +77,21 @@ function AddBook() {
   });
 
   const [categories, setCategories] = useState([]);
-  const [categoryVal, changeCategoryVal] = useState(false);
-  const [selectedCategory, setSelectedCategories] = useState(-1);
+  const [selectedCategory, setSelectedCategory] = useState(42);
+  const [categoryVal, setCategoryeVal] = useState(false);
 
-  const SaveHandler = (e) => {
-    e.preventDefault();
-
-    let new_book = {
-      name: bname,
-      description: description,
-      price: parseInt(bprice),
-      categoryId: parseInt(selectedCategory),
-      base64image: selectedFileBase,
-    };
-    console.log(new_book);
-    axios
-      .post(`https://book-e-sell-node-api.vercel.app/api/book`, new_book)
-      .then((res) => {
-        console.log(res);
-        if (res.data.code == 200) {
-          toast.success("Book added.");
-          navigate("/products-page");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.data.code == 409) {
-          toast.error(err.response.data.error);
-        }
-      });
-  };
-
-  const CancelHandler = () => {
-    navigate("/products-page");
-  };
   useEffect(() => {
     axios
-      .get(`https://book-e-sell-node-api.vercel.app/api/category/all`)
+      .get(
+        `https://book-e-sell-node-api.vercel.app/api/book/byId?id=
+        ${book_ID}`
+      )
       .then((res) => {
-        // console.log(res);
-        // console.log(res.data.result);
-        // setCategories((categories) => [...categories, res.data.result]);
-
-        setCategories(res.data.result);
-
-        // console.log(categories);
+        console.log(res);
+        setBname(res.data.result.name);
+        setBprice(res.data.result.price);
+        setDescription(res.data.result.description);
+        setSelectedCategory(res.data.result.categoryId);
       })
       .catch((err) => {
         console.log(err);
@@ -120,10 +116,10 @@ function AddBook() {
   }, [bprice]);
   useEffect(() => {
     if (selectedCategory === -1) {
-      changeCategoryVal(false);
+      setCategoryeVal(false);
       // changeFormVal(false);
     } else {
-      changeCategoryVal(true);
+      setCategoryeVal(true);
     }
   }, [selectedCategory]);
   useEffect(() => {
@@ -134,18 +130,27 @@ function AddBook() {
       changeDescVal(true);
     }
   }, [description]);
-  useEffect(() => {
-    if (bnameVal && descVal && bpriceVal && selectedFileVal && categoryVal) {
-      setFormVal(true);
-    } else {
-      setFormVal(false);
-    }
-  });
 
+  const CancelHandler = () => {
+    navigate("/products-page");
+  };
+
+  const SaveHandler = (e) => {
+    e.preventDefault();
+
+    let new_book = {
+      name: bname,
+      description: description,
+      price: parseInt(bprice),
+      categoryId: parseInt(selectedCategory),
+      base64image: selectedFileBase,
+    };
+    console.log(new_book);
+  };
   return (
     <>
       <div className="category-heading">
-        <span>Add Book</span>
+        <span>Edit Book</span>
       </div>
       <div className="reg-container">
         <div className="reg-login-container">
@@ -160,6 +165,7 @@ function AddBook() {
                   type="text"
                   id="bname"
                   name="name"
+                  value={bname}
                   className={bnameVal ? "textBox" : "textBox red-textBox"}
                   onChange={(e) => setBname(e.target.value)}
                 ></input>
@@ -171,6 +177,7 @@ function AddBook() {
                 </label>
                 <input
                   type="number"
+                  value={bprice}
                   onChange={(e) => setBprice(e.target.value)}
                   id="bprice"
                   name="price"
@@ -207,9 +214,9 @@ function AddBook() {
                 <select
                   id="category"
                   name="categoryId"
+                  value={selectedCategory}
                   className={categoryVal ? "textBox" : "textBox red-textBox"}
-                  onChange={(e) => setSelectedCategories(e.target.value)}
-                  defaultValue={-1}
+                  onChange={(e) => setCategories(e.target.value)}
                 >
                   <option value={-1}>Choose one</option>
                   {categories.map((category) => {
@@ -229,6 +236,7 @@ function AddBook() {
                 </label>
                 <input
                   type="text"
+                  value={description}
                   name="description"
                   onChange={(e) => setDescription(e.target.value)}
                   style={{ width: "950.2px", height: "87.5px" }}
@@ -238,14 +246,10 @@ function AddBook() {
             </div>
             <div className="reg-holder">
               <div className="reg-sub-holder">
-                {formVal ? (
-                  <GreenButton
-                    buttonText="Save"
-                    onClick={SaveHandler}
-                  ></GreenButton>
-                ) : (
-                  <h3 style={{ color: "red" }}>Invalid Details</h3>
-                )}
+                <GreenButton
+                  buttonText="Save"
+                  onClick={SaveHandler}
+                ></GreenButton>
               </div>
               <div className="reg-sub-holder">
                 <RedButton
@@ -261,4 +265,4 @@ function AddBook() {
   );
 }
 
-export default AddBook;
+export default EditBook;

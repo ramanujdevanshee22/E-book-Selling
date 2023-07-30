@@ -15,6 +15,7 @@ import AddBook from "./Components/PAGES/AddBook";
 import EditUser from "./Components/PAGES/EditUser";
 import Cart from "./Components/PAGES/Cart";
 import UpdateProfile from "./Components/PAGES/UpdateProfile";
+import EditBook from "./Components/PAGES/EditBook";
 
 const route = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const route = createBrowserRouter([
 
       { path: "products-page", element: <Products /> },
       { path: "add-book", element: <AddBook /> },
+      { path: "edit-book/:book_id", element: <EditBook /> },
 
       { path: "users-page", element: <Users /> },
       { path: "edit-user/:user_id/:pw", element: <EditUser /> },
@@ -37,7 +39,7 @@ const route = createBrowserRouter([
 
       { path: "cart-page", element: <Cart /> },
 
-      { path: "update-profile", element: <UpdateProfile /> },
+      // { path: "update-profile", element: <UpdateProfile /> },
     ],
   },
 ]);

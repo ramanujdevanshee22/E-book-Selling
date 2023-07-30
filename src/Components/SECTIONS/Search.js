@@ -9,6 +9,29 @@ import { Link } from "react-router-dom";
 function Search(props) {
   const [fetched_Blist, setBlist] = useState([]);
   const [openSearchList, setOpen] = useState(false);
+  const CancelBtnHandler = (e) => {
+    setOpen(false);
+  };
+  const SearchBtnHandler = (e) => {
+    axios
+      .get(
+        `https://book-e-sell-node-api.vercel.app/api/book/search?keyword=${e.target.value}`
+      )
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.code == 200) {
+          setBlist(res.data.result);
+        }
+        console.log(fetched_Blist);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Enter keyword to search product");
+        // setOpen(false);
+      });
+
+    setOpen(true);
+  };
   const searchHandler = (e) => {
     axios
       .get(
@@ -62,8 +85,8 @@ function Search(props) {
             </div>
           )}
         </div>
-        <GreenButton buttonText="Search" />
-        <RedButton buttonText="Cancel" />
+        <GreenButton buttonText="Search" onClick={SearchBtnHandler} />
+        <RedButton buttonText="Cancel" onSubmit={CancelBtnHandler} />
       </div>
     </>
   );

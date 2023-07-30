@@ -25,6 +25,12 @@ function Products() {
   const addBookHandler = () => {
     navigate("/add-book");
   };
+
+  const BookEditHandler = (e) => {
+    const bookID = e.target.value;
+    console.log(bookID);
+    navigate(`/edit-book/${bookID}`);
+  };
   const BookDeletehandler = (e) => {
     const DEL = window.confirm("Are you sure?");
     if (DEL) {
@@ -142,7 +148,7 @@ function Products() {
                     <button
                       className="editButton"
                       value={book.id}
-                      // onClick={BookEditHandler}
+                      onClick={BookEditHandler}
                       style={{ marginLeft: "30px" }}
                     >
                       Edit

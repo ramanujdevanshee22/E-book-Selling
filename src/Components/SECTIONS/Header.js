@@ -5,10 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authActions } from "../STORE/auth";
+import { adminActions } from "../STORE/admin";
 function Header(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Auth = useSelector((state) => state.auth.auth);
+  // const Admin = useSelector((state) => state.admin.admin);
   const clickLogin = (e) => {
     navigate("Login");
   };
@@ -43,9 +45,9 @@ function Header(props) {
     navigate("book-listing");
   };
 
-  const clickUpdateProfile = (e) => {
-    navigate("update-profile");
-  };
+  // const clickUpdateProfile = (e) => {
+  //   navigate("update-profile");
+  // };
   console.log(Auth);
   return (
     <>
@@ -69,10 +71,10 @@ function Header(props) {
                 buttonText="Book Listing"
                 onClick={clickBookListing}
               ></LinkButton>
-              <LinkButton
+              {/* <LinkButton
                 buttonText="Update Profile"
                 onClick={clickUpdateProfile}
-              ></LinkButton>
+              ></LinkButton> */}
               <WhiteButton
                 buttonText="Logout"
                 click={clickLogout}
